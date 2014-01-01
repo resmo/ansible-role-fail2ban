@@ -1,10 +1,16 @@
-# Ansible fail2ban role
+# Ansible Fail2Ban Role
+An ansible role for installing fail2ban.
 
-## Usage
+[![Build Status](https://travis-ci.org/resmo/ansible-role-fail2ban.png?branch=master)](https://travis-ci.org/resmo/ansible-role-fail2ban)
 
-Example playbook:
+## Usage:
 
+    ---
     - hosts: all
       remote_user: root
       roles:
       - resmo.fail2ban
+
+## Homepage: 
+
+https://github.com/resmo/ansible-role-fail2ban
