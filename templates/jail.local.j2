@@ -18,7 +18,7 @@ destemail = {{ fail2ban_config_destemail }}
 [ssh]
 
 enabled  = {{ fail2ban_config_jail_ssh_enabled }}
-port     = ssh
+port     = {{ fail2ban_config_jail_ssh_port }}
 filter   = sshd
 logpath  = /var/log/auth.log
 
@@ -26,6 +26,6 @@ logpath  = /var/log/auth.log
 [ssh-ddos]
 
 enabled  = {{ fail2ban_config_jail_sshddos_enabled }}
-port     = ssh
+port     = {{ fail2ban_config_jail_sshddos_port }}
 filter   = sshd-ddos
 logpath  = /var/log/auth.log
