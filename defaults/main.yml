@@ -9,7 +9,9 @@ fail2ban_service_state: started
 fail2ban_pkg_state: installed
 
 # "ignoreip" can be an IP address, a CIDR mask or a DNS host
-fail2ban_config_ignoreip: 127.0.0.1/8
+fail2ban_config_ignoreip: 
+  - 127.0.0.1/8
+  
 fail2ban_config_bantime: 600
 fail2ban_config_maxretry: 4
 fail2ban_config_destemail: root@localhost
