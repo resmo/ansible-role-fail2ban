@@ -15,9 +15,18 @@ destemail = {{ fail2ban_config_destemail }}
 # JAILS
 #
 
-[ssh]
+[sshd]
 enabled  = {{ fail2ban_config_jail_ssh_enabled }}
+{% if ansible_distribution_major_version == '5' %}
+port     = ssh
+filter   = sshd
+logpath  = /var/log/secure
+{% endif %}
 
-
-[ssh-ddos]
+[sshd-ddos]
 enabled  = {{ fail2ban_config_jail_sshddos_enabled }}
+{% if ansible_distribution_major_version == '5' %}
+port     = ssh
+filter   = sshd-ddos
+logpath  = /var/log/secure
+{% endif %}
