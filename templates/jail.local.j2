@@ -3,9 +3,9 @@
 [DEFAULT]
 
 # "ignoreip" can be an IP address, a CIDR mask or a DNS host
-ignoreip = {{ fail2ban_config_ignoreip }}
 bantime  = {{ fail2ban_config_bantime }}
 maxretry = {{ fail2ban_config_maxretry }}
+ignoreip = {% for entry in fail2ban_config_ignoreip|ipv4 %}{{entry}} {% endfor %}
 
 # Destination email address used solely for the interpolations in
 # jail.{conf,local} configuration files.
@@ -15,17 +15,18 @@ destemail = {{ fail2ban_config_destemail }}
 # JAILS
 #
 
-[ssh]
-
+[sshd]
 enabled  = {{ fail2ban_config_jail_ssh_enabled }}
+{% if ansible_distribution_major_version == '5' %}
 port     = ssh
 filter   = sshd
-logpath  = /var/log/auth.log
+logpath  = /var/log/secure
+{% endif %}
 
-
-[ssh-ddos]
-
+[sshd-ddos]
 enabled  = {{ fail2ban_config_jail_sshddos_enabled }}
+{% if ansible_distribution_major_version == '5' %}
 port     = ssh
 filter   = sshd-ddos
-logpath  = /var/log/auth.log
+logpath  = /var/log/secure
+{% endif %}
