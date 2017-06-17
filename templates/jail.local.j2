@@ -3,9 +3,9 @@
 [DEFAULT]
 
 # "ignoreip" can be an IP address, a CIDR mask or a DNS host
-ignoreip = {{ fail2ban_config_ignoreip }}
 bantime  = {{ fail2ban_config_bantime }}
 maxretry = {{ fail2ban_config_maxretry }}
+ignoreip = {% for entry in fail2ban_config_ignoreip|ipv4 %}{{entry}} {% endfor %}
 
 # Destination email address used solely for the interpolations in
 # jail.{conf,local} configuration files.
